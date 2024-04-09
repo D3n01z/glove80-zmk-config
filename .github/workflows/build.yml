@@ -23,9 +23,9 @@ jobs:
           sparse-checkout: |
             keymap.zmk
           sparse-checkout-cone-mode: false
-          path: config
+          path: tmp
       - name: Overwrite current keymap with personal keymap
-        run: mv config/keymap.zmk config/glove80.keymap
+        run: mv tmp/keymap.zmk config/glove80.keymap
       - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-22.05
