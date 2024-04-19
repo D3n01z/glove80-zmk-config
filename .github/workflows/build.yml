@@ -7,10 +7,16 @@ on:
     inputs:
       keymap-branch:
         type: choice
-        description: Select branch
+        description: Select keymap branch
         options:
           - personal
           - feat/btt
+      zmk-branch:
+        type: choice
+        description: Select ZMK branch
+        options:
+          - main
+          - experimental-rgb
 
 jobs:
   build:
@@ -23,13 +29,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: D3n01z/glove80-zmk
-          ref: main
+          ref: ${{ github.event.inputs.zmk-branch }}
           path: src
       - name: Checkout personal keymap
         uses: actions/checkout@v4
         with:
           repository: D3n01z/glove80-keymaps
-          ref: ${{ github.event.inputs.name }}
+          ref: ${{ github.event.inputs.keymap-branch }}
           sparse-checkout: |
             keymap.zmk
           sparse-checkout-cone-mode: false
